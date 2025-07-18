@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   connect-src 'self' http://localhost:5000;
+                   style-src 'self' 'unsafe-inline';
+                   img-src 'self' data: blob:;
+                   script-src 'self';">
+
+    <link rel="stylesheet" href="/static/css/input.css">
+    <title>Model Input Page</title>
+</head>
+
+
+    <link rel="stylesheet" href="/static/css/input.css">
+    
+    <title>Model Input Page</title>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/logout">Logout</a></li>
+                <!-- <li><a href="/database">Database</a></li> -->
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        <h1>Model Prediction Portal</h1>
+
+        <section>
+            <h2>Color Analysis Model</h2>
+            <form id="color-form"  enctype="multipart/form-data">
+                <label for="color-image">Upload Image:</label>
+                <input type="file" id="color-image" name="image">
+                <br><br>
+                <button type="submit">Predict Colors</button>
+            </form>
+            <div id="color-result">
+                <p>Predicted Color:</p>
+                <div id="color-display"></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Hairstyle Recommendation Model</h2>
+            <form id="hairstyle-form" enctype="multipart/form-data">
+                <label for="hairstyle-image">Upload Image:</label>
+                <input type="file" id="hairstyle-image" name="image">
+                <br><br>
+                <button type="submit">Predict Hairstyle</button>
+            </form>
+            <div id="hairstyle-result">
+                <p>Predicted Hairstyle:</p>
+                
+            </div>
+        </section>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

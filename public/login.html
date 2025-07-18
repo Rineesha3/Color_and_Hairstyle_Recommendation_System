@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <title>Login</title>
+</head>
+<body>
+  <div class="center">
+    <h1>Login</h1>
+    <form action="/login" method="post">
+      <div class="txt_field">
+        <input type="email" name="email" required>
+        <span></span>
+        <label for="email">Email</label>
+      </div>
+      <div class="txt_field">
+        <input type="password" name="password" required>
+        <span></span>
+        <label for="password">Password</label>
+      </div>
+      <input type="submit" value="Login">
+      <div class="signup_link">
+        Not a member? <a href="signup.html">Sign up</a>
+      </div>
+    </form>
+    <div class="back_link">
+      <a href="/">Back</a>
+    </div>
+  </div>
+</body>
+</html>
