@@ -4,6 +4,7 @@ This is an attempt to combine both color analysis model and hairstyle recommenda
 • Clothing Color Recommendation System
 1. Utilizes skin tone data to suggest clothing colors that enhance the user's appearance.
 2. Incorporates user inputs (image) for analysis.
+
 • Hairstyle Recommendation System
 1. Analyzes face shape to suggest suitable hairstyles.
 2. Provides options for females.
