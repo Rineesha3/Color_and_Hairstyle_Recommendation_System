@@ -7,6 +7,8 @@
   <title>StyleSync</title>
   <link rel="stylesheet" href="/static/css/styles.css">
   <script defer src="/src/script.js"></script>
+  <script defer src="/static/js/nav-auth.js"></script>
+  <script defer src="/static/js/nav-toggle.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -14,13 +16,18 @@
   <header>
     <nav class="navbar">
       <div class="logo">StyleSync</div>
-      <ul class="nav-links">
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links main-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#innovations">Innovations</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-        <li><a href="login.html" class="highlighted">Login</a></li>
+      </ul>
+      <ul class="nav-links auth-links">
+        <li data-auth="guest-only"><a href="login.html" class="highlighted">Login</a></li>
+        <li data-auth="guest-only"><a href="signup.html">Sign Up</a></li>
+        <li data-auth="user-only" hidden class="nav-username-item"><span class="nav-username"></span></li>
+        <li data-auth="user-only" hidden><a href="/home" class="highlighted">Predict &#8594;</a></li>
       </ul>
     </nav>
   </header>
@@ -30,6 +37,11 @@
       <div class="hero-content">
         <h1>Unlock Your Best Look</h1>
         <p>Personalized color and hairstyle recommendations at your fingertips.</p>
+        <div class="hero-actions">
+          <a href="signup.html" class="btn-primary" data-auth="guest-only">Get Started</a>
+          <a href="/home" class="btn-primary" data-auth="user-only" hidden>Get Started</a>
+          <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+        </div>
       </div>
     </div>
   </section>
@@ -43,23 +55,23 @@
 
       <!-- Descriptions of Features -->
       <div class="about-features">
-        <div class="feature" id="skin-tone-analysis">
+        <a class="feature" href="skin-tone-analysis.html">
           <h3>Skin Tone Analysis</h3>
           <p>Our AI scans your skin tone to recommend color palettes that enhance your natural glow.</p>
-        </div>
-        <div class="feature" id="face-shape-recognition">
+        </a>
+        <a class="feature" href="face-shape-recognition.html">
           <h3>Face Shape Recognition</h3>
           <p>We analyze your face shape to suggest hairstyles that perfectly complement your features.</p>
-        </div>
-        <div class="feature" id="comprehensive-recommendation">
+        </a>
+        <a class="feature" href="comprehensive-recommendation.html">
           <h3>Comprehensive Recommendation</h3>
           <p>Receive tailored advice combining color and hairstyle insights to create a cohesive look.</p>
-        </div>
-        <div class="feature" id="effortless-experience">
+        </a>
+        <a class="feature" href="effortless-experience.html">
           <h3>Effortless Experience</h3>
           <p>Enjoy a seamless and intuitive process to transform your style.</p>
-        </div>
-      </div>      
+        </a>
+      </div>
     </div>
   </section>
 
@@ -102,25 +114,12 @@
      </div>
      <div class="step" id="step4">
         <h3>Step 4: Tailored Recommendations</h3>
-        <p>Receive a comprehensive report with curated most suitable color and hairstyle that suit your unique attributes.</p>
+        <p>Receive a comprehensive report with the most suitable color and hairstyle curated to match your unique attributes.</p>
      </div>     
     </div>
   </section>
  
   
-
-  <section id="contact" class="contact-section">
-    <h2>Contact Us</h2>
-    <p>Reach out to learn more about how we can assist you.</p>
-    <br>
-    <div class="social">
-      <a href=""><i class="fa-brands fa-facebook"></i></a>
-      <a href=""><i class="fa-brands fa-instagram"></i></a>
-      <a href=""><i class="fa-brands fa-twitter"></i></a>
-      <a href=""><i class="fa-brands fa-youtube"></i></a>
-    </div>
-    <br>
-  </section>
 
   <footer>
     <p>&copy; 2024 StyleSync. All rights reserved.</p>

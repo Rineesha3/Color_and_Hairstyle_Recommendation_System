@@ -1,6 +1,37 @@
- document.getElementById('color-form').addEventListener('submit', async (e) => {
+const ALLOWED_IMAGE_EXTENSIONS = ['png', 'jpg', 'jpeg'];
+
+const LOADER_HTML = '<div class="predict-loader"><span class="spinner"></span>Predicting...</div>';
+
+function validateImageFile(inputEl, errorEl) {
+    const file = inputEl.files[0];
+    if (!file) {
+        errorEl.textContent = 'Please choose an image.';
+        return false;
+    }
+    const ext = file.name.split('.').pop().toLowerCase();
+    if (!ALLOWED_IMAGE_EXTENSIONS.includes(ext)) {
+        errorEl.textContent = `Unsupported file type ".${ext}". Allowed: png, jpg, jpeg.`;
+        return false;
+    }
+    errorEl.textContent = '';
+    return true;
+}
+
+const colorImageInput = document.getElementById('color-image');
+const colorImageError = document.getElementById('color-image-error');
+colorImageInput.addEventListener('change', () => validateImageFile(colorImageInput, colorImageError));
+
+const hairstyleImageInput = document.getElementById('hairstyle-image');
+const hairstyleImageError = document.getElementById('hairstyle-image-error');
+hairstyleImageInput.addEventListener('change', () => validateImageFile(hairstyleImageInput, hairstyleImageError));
+
+document.getElementById('color-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!validateImageFile(colorImageInput, colorImageError)) {
+        return;
+    }
     const formData = new FormData(e.target);
+    document.getElementById('color-display').innerHTML = LOADER_HTML;
     try {
         const response = await fetch('/predict_color', {
             method: 'POST',
@@ -22,7 +53,11 @@
 
 document.getElementById('hairstyle-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!validateImageFile(hairstyleImageInput, hairstyleImageError)) {
+        return;
+    }
     const formData = new FormData(e.target);
+    document.getElementById('hairstyle-result').innerHTML = LOADER_HTML;
     try {
         const response = await fetch('/predict_hairstyle', {
             method: 'POST',

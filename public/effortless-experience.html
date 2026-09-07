@@ -4,32 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Effortless Experience</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="stylesheet" href="/static/css/stl.css">
 </head>
 <body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">StyleSync</div>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links main-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#innovations">Innovations</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+      </ul>
+      <ul class="nav-links auth-links">
+        <li data-auth="guest-only"><a href="login.html" class="highlighted">Login</a></li>
+        <li data-auth="guest-only"><a href="signup.html">Sign Up</a></li>
+        <li data-auth="user-only" hidden class="nav-username-item"><span class="nav-username"></span></li>
+        <li data-auth="user-only" hidden><a href="/home" class="highlighted">Predict &#8594;</a></li>
+      </ul>
+    </nav>
+  </header>
   <div class="content">
     <div class="info">
-      <h2>Effortless Experience: Transform Your Style with Ease</h2>
-      <p>Our platform offers a streamlined, intuitive experience designed to simplify the process of discovering your perfect style. Whether you're looking for a fresh hairstyle, personalized fashion advice, or color recommendations that complement your unique features, we provide tailored suggestions with minimal effort from you.</p>
-      
+      <div class="page-heading">
+        <a href="index.html" class="back-circle" aria-label="Back to home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+        <h2>Effortless Experience: Transform Your Style with Ease</h2>
+      </div>
+      <p>Our platform makes finding your perfect style simple — fresh hairstyles, fashion advice, or color recommendations, tailored with minimal effort.</p>
+
       <h3>Step 1: Upload Your Photo</h3>
-      <p>The journey begins with you uploading a clear, well-lit image of yourself. This is the foundation for our system to analyze and identify your face shape, skin tone, and other key features, ensuring the recommendations are personalized to you.</p>
+      <p>Upload a clear, well-lit photo of yourself — this lets our system identify your face shape, skin tone, and other key features.</p>
 
       <h3>Step 2: Instant Analysis</h3>
-      <p>Once your photo is uploaded, our advanced algorithms get to work. Using state-of-the-art computer vision and machine learning techniques, the platform analyzes your facial features to determine your face shape and skin tone, along with other characteristics such as facial proportions and skin undertones.</p>
-      
+      <p>Our AI analyzes your facial features using computer vision to determine your face shape, skin tone, and proportions.</p>
+
       <h3>Step 3: Personalized Recommendations</h3>
-      <p>With your image and features analyzed, we generate custom suggestions tailored to your unique look. From the best hairstyles that complement your face shape, to clothing colors that enhance your skin tone, every recommendation is designed to elevate your style. We provide practical advice to help you experiment and refine your personal style effortlessly.</p>
-      
+      <p>We generate custom suggestions — hairstyles that complement your face shape and colors that enhance your skin tone.</p>
+
       <h3>Step 4: Explore and Refine Your Look</h3>
-      <p>The process doesn't stop with the initial recommendations. You can explore various options and refine your choices as you go. Whether you want to experiment with different hairstyles or find accessories that work with your overall style, our platform allows for a dynamic, interactive experience. You can save your favorite looks and even try virtual makeovers to see how different styles would appear on you before making a final decision.</p>    <p>Experience a smooth, enjoyable journey to finding your perfect style, all while receiving expert-level guidance and recommendations designed specifically for you!</p>
+      <p>Keep exploring and refining your choices — save favorite looks or try virtual makeovers before deciding, with expert-level guidance every step of the way.</p>
     </div>
     <div class="image">
       <img src="/static/images/last.png" alt="Effortless Experience">
     </div>
   </div>
-  <div class="back-link">
-    <a href="index.html">Back</a>
-  </div>
+  <script defer src="/static/js/nav-auth.js"></script>
+  <script defer src="/static/js/nav-toggle.js"></script>
 </body>
 </html>

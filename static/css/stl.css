@@ -21,25 +21,45 @@ p {
     line-height: 1.6;
 }
 
-/* Back Link Styles */
-.back-link {
-    text-align: center;
-    margin-top: 20px;
+/* Back Navigation */
+.page-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
-.back-link a {
-    color: #202853;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 10px 20px;
+.back-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
     border: 2px solid #202853;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    border-radius: 50%;
+    color: #202853;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.back-link a:hover {
+.back-circle:hover {
     background-color: #202853;
-    color: white;
+    color: #ffffff;
+}
+
+.back-circle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.page-heading h2 {
+    margin-bottom: 0;
+}
+
+.page-heading + p {
+    margin-top: 4px;
 }
 
 
@@ -51,12 +71,19 @@ p {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 20px;
-    gap: 20px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    gap: 30px;
 }
 
 .info {
     width: 60%;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    padding: 35px 40px;
 }
 
 .season-table {
@@ -92,32 +119,53 @@ p {
 /* Shape Section Styles */
 .shape-section {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     gap: 20px;
 }
 
 .shape-item {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
+    width: 100%;
+    min-height: 210px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    padding: 25px 30px;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.shape-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
 }
 
 .shape-item img {
-    width: 150px; /* Fixed image width */
-    height: auto;
-    object-fit: contain;
-    border-radius: 5px;
+    width: 150px;
+    height: 150px; /* fixed box so differing source photo aspect ratios don't change card height */
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
 }
 
-.shape-item div {
+/* .shape-info also carries a "card" class in markup, but it sits nested
+   inside .shape-item which already provides the card surface — keep it plain
+   so face-shape-recognition.html doesn't render a card inside a card. */
+.shape-info {
     max-width: 600px;
 }
 
 /* Image Section */
 .image {
     width: 35%;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    padding: 25px;
 }
 
 .season-image {
@@ -126,12 +174,68 @@ p {
     object-fit: contain;
 }
 
-.matter{
-    width:100%;
+.image img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+.matter {
+    width: 100%;
+}
+
+.shape-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.shape-grid .shape-section {
+    margin-bottom: 0;
 }
 .full-screen-layout {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.season-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .info,
+    .image {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .shape-section {
+        flex-wrap: wrap;
+    }
+
+    .shape-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .shape-item div {
+        max-width: 100%;
+    }
+
+    h2 {
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
+    }
 }

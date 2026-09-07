@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   style-src 'self' 'unsafe-inline';
+                   img-src 'self' data: blob: https://res.cloudinary.com;
+                   script-src 'self';">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/input.css">
+    <link rel="stylesheet" href="/static/css/history.css">
+    <title>Your History</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">StyleSync</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links main-links">
+                <li><a href="/index.html#home">Home</a></li>
+                <li><a href="/index.html#about">About Us</a></li>
+                <li><a href="/index.html#innovations">Innovations</a></li>
+                <li><a href="/index.html#how-it-works">How It Works</a></li>
+            </ul>
+            <ul class="nav-links auth-links">
+                <li data-auth="guest-only"><a href="/login" class="highlighted">Login</a></li>
+                <li data-auth="guest-only"><a href="/signup">Sign Up</a></li>
+                <li data-auth="user-only" hidden class="nav-username-item"><span class="nav-username"></span></li>
+                <li data-auth="user-only" hidden><a href="/logout" class="highlighted">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        <a href="/home" class="back_link">&larr; Back to Predict</a>
+        <h1>Your Prediction History</h1>
+        <div id="history-list">
+            <p>Loading...</p>
+        </div>
+    </div>
+    <script defer src="/static/js/nav-auth.js"></script>
+    <script defer src="/static/js/nav-toggle.js"></script>
+    <script defer src="/static/js/history.js"></script>
+</body>
+</html>

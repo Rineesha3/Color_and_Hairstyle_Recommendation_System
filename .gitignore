@@ -1,0 +1,30 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Editor
+.vscode/
+
+# Runtime uploads (user images saved at request time)
+uploads/*
+!uploads/.gitkeep
+
+# Raw training data (too large for git, keep out of version control)
+hair dataset/
+training_data/
+dataset/
+
+# Env
+.env
+
+# Removed from repo; ignore if regenerated locally
+.gitattributes
+.gitignore
+
+# Trained model weights (large binaries, kept out of git)
+model/*.h5

@@ -9,35 +9,6 @@ body {
     color: #333;
 }
 
-/* Header Styles */
-header {
-    background-color: #2c3e50;
-    padding: 10px 20px;
-    color: #fff;
-}
-
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-}
-
-header nav ul li {
-    margin-left: 20px;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-header nav ul li a:hover {
-    text-decoration: underline;
-}
-
 /* Content Styles */
 .content {
     padding: 20px;
@@ -81,6 +52,18 @@ form select {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+.file-input-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-error {
+    color: #d32f2f;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 form button {

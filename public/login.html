@@ -9,17 +9,22 @@
 <body>
   <div class="center">
     <h1>Login</h1>
-    <form action="/login" method="post">
+    <p id="signup-success" class="form-notice" hidden>Signup successful! Please log in.</p>
+    <form id="login-form" action="/login" method="post">
       <div class="txt_field">
-        <input type="email" name="email" required>
+        <input type="email" name="email" required placeholder=" ">
         <span></span>
         <label for="email">Email</label>
       </div>
-      <div class="txt_field">
-        <input type="password" name="password" required>
+      <div class="txt_field password_field">
+        <input type="password" name="password" id="password" required placeholder=" ">
         <span></span>
         <label for="password">Password</label>
+        <button type="button" class="toggle-password" id="togglePassword" aria-label="Show password">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+        </button>
       </div>
+      <span class="field-error" id="general-error"></span>
       <input type="submit" value="Login">
       <div class="signup_link">
         Not a member? <a href="signup.html">Sign up</a>
@@ -29,5 +34,48 @@
       <a href="/">Back</a>
     </div>
   </div>
+  <script>
+    if (new URLSearchParams(window.location.search).get('signup') === 'success') {
+      document.getElementById('signup-success').hidden = false;
+    }
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const generalError = document.getElementById('general-error');
+      generalError.textContent = '';
+
+      const formData = new URLSearchParams(new FormData(e.target));
+      try {
+        const response = await fetch('/login', { method: 'POST', body: formData });
+        const result = await response.json();
+
+        if (response.ok && result.redirect) {
+          window.location.href = result.redirect;
+        } else {
+          generalError.textContent = (result.errors && result.errors.general) || 'Login failed. Please try again.';
+        }
+      } catch (error) {
+        generalError.textContent = 'Login failed. Please try again.';
+      }
+    });
+
+    const EYE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+    const EYE_OFF_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+
+    const passwordInput = document.getElementById('password');
+    const toggleButton = document.getElementById('togglePassword');
+
+    toggleButton.addEventListener('click', function () {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleButton.innerHTML = EYE_ICON;
+        toggleButton.setAttribute('aria-label', 'Hide password');
+      } else {
+        passwordInput.type = 'password';
+        toggleButton.innerHTML = EYE_OFF_ICON;
+        toggleButton.setAttribute('aria-label', 'Show password');
+      }
+    });
+  </script>
 </body>
 </html>

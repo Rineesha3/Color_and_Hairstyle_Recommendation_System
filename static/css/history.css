@@ -1,0 +1,89 @@
+.back_link {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #2691d9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back_link:hover {
+    text-decoration: underline;
+}
+
+#history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.history-entry {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.history-entry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.history-type-badge {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+    color: #fff;
+}
+
+.history-type-color {
+    background-color: #2691d9;
+}
+
+.history-type-hairstyle {
+    background-color: #8e44ad;
+}
+
+.history-entry-time {
+    font-size: 13px;
+    color: #666;
+}
+
+.history-entry-body {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.history-block-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.history-thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.history-swatch-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.history-color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}

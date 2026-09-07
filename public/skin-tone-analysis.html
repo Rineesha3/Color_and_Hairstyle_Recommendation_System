@@ -4,15 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skin Tone Analysis</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="stylesheet" href="/static/css/stl.css">
 </head>
 <body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">StyleSync</div>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links main-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#innovations">Innovations</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+      </ul>
+      <ul class="nav-links auth-links">
+        <li data-auth="guest-only"><a href="login.html" class="highlighted">Login</a></li>
+        <li data-auth="guest-only"><a href="signup.html">Sign Up</a></li>
+        <li data-auth="user-only" hidden class="nav-username-item"><span class="nav-username"></span></li>
+        <li data-auth="user-only" hidden><a href="/home" class="highlighted">Predict &#8594;</a></li>
+      </ul>
+    </nav>
+  </header>
   <div class="content">
     <div class="info">
-      <h2>Color Analysis: The 4 Seasons</h2>
+      <div class="page-heading">
+        <a href="index.html" class="back-circle" aria-label="Back to home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+        <h2>Color Analysis: The 4 Seasons</h2>
+      </div>
       <p>Color analysis divides skin tones into four main categories, each corresponding to a season: Spring, Summer, Autumn, and Winter. These seasons reflect different color palettes that can complement your natural complexion and bring out your inner radiance.</p>
-      
+
       <!-- Comparison Table Structure -->
+      <div class="season-table-wrapper">
       <table class="season-table">
         <thead>
           <tr>
@@ -49,6 +72,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
       <p>By understanding your seasonal color profile, you can choose clothing, makeup, and accessories that enhance your natural beauty and make you feel more confident in your skin.</p>
     </div>
@@ -58,8 +82,7 @@
     </div>
   </div>
 
-  <div class="back-link">
-    <a href="index.html">Back</a>
-  </div>
+  <script defer src="/static/js/nav-auth.js"></script>
+  <script defer src="/static/js/nav-toggle.js"></script>
 </body>
 </html>

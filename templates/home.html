@@ -5,27 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   connect-src 'self' http://localhost:5000;
+                   connect-src 'self' http://localhost:5001;
                    style-src 'self' 'unsafe-inline';
                    img-src 'self' data: blob:;
                    script-src 'self';">
 
+    <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/input.css">
     <title>Model Input Page</title>
-</head>
-
-
-    <link rel="stylesheet" href="/static/css/input.css">
-    
-    <title>Model Input Page</title>
-    
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="/logout">Logout</a></li>
-                <!-- <li><a href="/database">Database</a></li> -->
+        <nav class="navbar">
+            <div class="logo">StyleSync</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links main-links">
+                <li><a href="/index.html#home">Home</a></li>
+                <li><a href="/index.html#about">About Us</a></li>
+                <li><a href="/index.html#innovations">Innovations</a></li>
+                <li><a href="/index.html#how-it-works">How It Works</a></li>
+            </ul>
+            <ul class="nav-links auth-links">
+                <li data-auth="guest-only"><a href="/login" class="highlighted">Login</a></li>
+                <li data-auth="guest-only"><a href="/signup">Sign Up</a></li>
+                <li data-auth="user-only" hidden class="nav-username-item"><span class="nav-username"></span></li>
+                <li data-auth="user-only" hidden><a href="/history">History</a></li>
+                <li data-auth="user-only" hidden><a href="/logout" class="highlighted">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -36,7 +41,10 @@
             <h2>Color Analysis Model</h2>
             <form id="color-form"  enctype="multipart/form-data">
                 <label for="color-image">Upload Image:</label>
-                <input type="file" id="color-image" name="image">
+                <span class="file-input-row">
+                    <input type="file" id="color-image" name="image" accept=".png,.jpg,.jpeg">
+                    <span class="file-error" id="color-image-error"></span>
+                </span>
                 <br><br>
                 <button type="submit">Predict Colors</button>
             </form>
@@ -50,7 +58,10 @@
             <h2>Hairstyle Recommendation Model</h2>
             <form id="hairstyle-form" enctype="multipart/form-data">
                 <label for="hairstyle-image">Upload Image:</label>
-                <input type="file" id="hairstyle-image" name="image">
+                <span class="file-input-row">
+                    <input type="file" id="hairstyle-image" name="image" accept=".png,.jpg,.jpeg">
+                    <span class="file-error" id="hairstyle-image-error"></span>
+                </span>
                 <br><br>
                 <button type="submit">Predict Hairstyle</button>
             </form>
@@ -61,5 +72,7 @@
         </section>
     </div>
     <script src="/static/js/main.js"></script>
+    <script defer src="/static/js/nav-auth.js"></script>
+    <script defer src="/static/js/nav-toggle.js"></script>
 </body>
 </html>

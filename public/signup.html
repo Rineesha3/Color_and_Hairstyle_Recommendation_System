@@ -9,24 +9,95 @@
 <body>
     <div class="center">
         <h1>Sign Up</h1>
-        <form action="/signup" method="post">
+        <form id="signup-form" action="/signup" method="post" novalidate>
             <div class="txt_field">
-                <input type="email" name="email" required>
-                <span></span>
-                <label for="email">Email</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" name="username" required>
+                <input type="text" name="username" id="username" required minlength="3" maxlength="20"
+                       pattern="[a-zA-Z0-9_]+" placeholder=" "
+                       title="3-20 characters: letters, numbers, and underscores only">
                 <span></span>
                 <label for="username">Username</label>
+                <span class="field-error" id="username-error"></span>
             </div>
             <div class="txt_field">
-                <input type="password" name="password" required>
+                <input type="email" name="email" id="email" required placeholder=" ">
+                <span></span>
+                <label for="email">Email</label>
+                <span class="field-error" id="email-error"></span>
+            </div>
+            <div class="txt_field password_field">
+                <input type="password" name="password" id="password" required minlength="8"
+                       pattern="(?=.*[a-zA-Z])(?=.*[0-9]).+" placeholder=" "
+                       title="At least 8 characters, including one letter and one number">
                 <span></span>
                 <label for="password">Password</label>
+                <button type="button" class="toggle-password" id="togglePassword" aria-label="Show password">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                </button>
+                <span class="field-error" id="password-error"></span>
             </div>
+            <span class="field-error" id="general-error"></span>
             <input type="submit" value="Sign Up">
+            <div class="signup_link">
+                Already have an account? <a href="login.html">Login</a>
+            </div>
         </form>
+        <div class="back_link">
+            <a href="/">Back</a>
+        </div>
     </div>
+    <script>
+        const FIELD_ERROR_IDS = ['username', 'email', 'password', 'general'];
+
+        function clearFieldErrors() {
+            FIELD_ERROR_IDS.forEach((field) => {
+                document.getElementById(`${field}-error`).textContent = '';
+            });
+        }
+
+        function showFieldErrors(errors) {
+            clearFieldErrors();
+            for (const [field, message] of Object.entries(errors)) {
+                const el = document.getElementById(`${field}-error`) || document.getElementById('general-error');
+                el.textContent = message;
+            }
+        }
+
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearFieldErrors();
+
+            const formData = new URLSearchParams(new FormData(e.target));
+            try {
+                const response = await fetch('/signup', { method: 'POST', body: formData });
+                const result = await response.json();
+
+                if (response.ok && result.redirect) {
+                    window.location.href = result.redirect;
+                } else {
+                    showFieldErrors(result.errors || { general: 'Signup failed. Please try again.' });
+                }
+            } catch (error) {
+                showFieldErrors({ general: 'Signup failed. Please try again.' });
+            }
+        });
+
+        const EYE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+        const EYE_OFF_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.getElementById('togglePassword');
+
+        toggleButton.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.innerHTML = EYE_ICON;
+                toggleButton.setAttribute('aria-label', 'Hide password');
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.innerHTML = EYE_OFF_ICON;
+                toggleButton.setAttribute('aria-label', 'Show password');
+            }
+        });
+    </script>
 </body>
 </html>
