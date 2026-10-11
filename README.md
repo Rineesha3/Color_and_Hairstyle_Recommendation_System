@@ -1,14 +1,62 @@
-# Color_and_Hairstyle_Recommendation_System
+# Color and Hairstyle Recommendation System
 
-This is an attempt to combine both color analysis model and hairstyle recommendation model under a single platform. The project focuses on building a user-friendly web application that provides personalized style recommendations through two main components:
+Recommends a clothing color for your skin tone and a hairstyle for your face shape from a single photo.
 
-• Clothing Color Recommendation System
+## Project Overview
 
-1. Utilizes skin tone data to suggest clothing colors that enhance the user's appearance.
-2. Incorporates user inputs (image) for analysis.
-   
-• Hairstyle Recommendation System
-1. Analyzes face shape to suggest suitable hairstyles.
-2. Provides options for females.
-   
-Recommendations can be generated based on a variety of machine learning algorithms, and scalable to potentially incorporate features that could include makeup advice,accessory suggestions, and many others in the future. The system leverages deep learning models, including MobileNetV2 for color analysis and Convolutional Neural Networks (CNNs) for hairstyle recommendation.
+Users upload a photo of their face. A deep learning model suggests a clothing color that suits their skin tone, and a face-shape classifier recommends a matching hairstyle. The models run on a Python/Flask service, while a Node.js/Express server handles the web pages, user accounts and prediction history.
+
+## Key Features
+
+- Clothing color recommendation based on skin tone
+- Face shape detection (heart, oblong, oval, round, square) with a matching hairstyle
+- User sign-up and login
+- Prediction history saved for each user
+- Uploaded photos stored on Cloudinary
+
+## Technology Stack
+
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Node.js, Express, MongoDB
+- **Machine Learning:** Python, Flask, TensorFlow, Keras, MobileNetV2
+- **Storage:** Cloudinary
+
+## Installation and Setup
+
+### Prerequisites
+- Python 3
+- Node.js and npm
+- MongoDB database
+- Cloudinary account
+- Trained model files `model1.h5` and `hairstyle_model_v2.h5` in the `model/` folder (not included in the repo)
+
+### Flask Model Service
+
+```bash
+git clone https://github.com/Rineesha3/Color_and_Hairstyle_Recommendation_System.git
+cd Color_and_Hairstyle_Recommendation_System
+python -m venv venv
+venv\Scripts\activate          # macOS/Linux: source venv/bin/activate
+pip install -r requirements.txt
+python app.py
+```
+
+The service runs on `http://localhost:5001`.
+
+### Node Server
+
+Create a `.env` file in the project root:
+```
+MONGO_URI=your_mongodb_connection_string
+SESSION_SECRET=your_session_secret
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+```bash
+npm install
+npm start
+```
+
+The app runs on `http://localhost:3001`. Keep the Flask service running alongside it.
